@@ -122,6 +122,20 @@ namespace ProjectFileReferenceReader
                     ConsoleUtility.WriteError(exp.Message);
                 }
             }
+
+            foreach (XmlNode item in xmldoc.SelectNodes("//x:ProjectReference", mgr))
+            {
+                try
+                {
+                    string reference = item.Attributes[0].Value;
+
+                    ConstructRow(projectPath, file, ref tableRowNo, reference, referenceTable);
+                }
+                catch (Exception exp)
+                {
+                    ConsoleUtility.WriteError(exp.Message);
+                }
+            }
         }
 
         /// <summary>
